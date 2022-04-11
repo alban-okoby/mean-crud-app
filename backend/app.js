@@ -1,5 +1,14 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
+
+// Connexion à mongoBD
+mongoose.connect('mongodb+srv://cerveauplus:connect@cluster0.yr8lt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
 app.use(express.json());
 
 app.use((req, res, next) => {
