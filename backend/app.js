@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 
 const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 
 
 // Connexion à mongoBD
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/stuff', stuffRoutes);
+app.use('api/auth', userRoutes);
   
 // Exportation de app
 module.exports = app;
