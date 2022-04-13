@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const Thing = require('../models/thing.js');
+
 
 router.post('/', (req, res, next) => {
   const thing = new Thing({

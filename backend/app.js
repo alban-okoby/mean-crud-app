@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 
-const Thing = require('./models/thing.js');
+const stuffRoutes = require('./routes/stuff');
+
 
 // Connexion à mongoBD
 mongoose.connect('mongodb+srv://cerveauplus:connect@cluster0.yr8lt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
@@ -14,15 +15,17 @@ mongoose.connect('mongodb+srv://cerveauplus:connect@cluster0.yr8lt.mongodb.net/m
 
 const app = express();
 
+
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
-  });
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
 
-  app.use(bodyParser.json());
+app.use(bodyParser.json());
 
+app.use('/api/stuff', stuffRoutes);
   
-
+// Exportation de app
 module.exports = app;
